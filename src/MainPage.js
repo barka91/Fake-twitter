@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavigationPannel from './NavigationPannel';
 import Signin from './Signin';
+import "./styles.css"
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -35,7 +36,6 @@ class MainPage extends React.Component {
 
         this.setState((state) => {
             state.page = "inscription";
-            alert("signin")
             return state;
         });    
     }
@@ -43,24 +43,33 @@ class MainPage extends React.Component {
     
 
     render() {
+        let content;
+        
+        
+        if (this.state.page == "inscription") {
+            content = < Signin/>;
+        } else if (this.state.page == "connexion") {
+            content = < NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected= {this.state.isConnected} /> ;
+        } 
+
+        
+        
+
+
         return (
             <div>
                 MainPage
-            
-                
-
-                {this.state.page == "inscription" ? (
-                    < Signin /> 
-                ) : ( 
-                    <div>
-                        < NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected= {this.state.isConnected} /> 
-                    <button type = "submit" onClick = {this.setSignin}> 
-                        inscription 
-                    </button>
+                <div className='wrapper'>
+                    <div className='control'>
+                        <button type = "submit" onClick = {this.setSignin}> 
+                            inscription 
+                        </button>
+                        <button type = "submit" onClick = {this.setLogout}> 
+                            connexion 
+                        </button>
                     </div>
-                )}
-                
-                
+                    {content}
+                </div>            
             </div>
         )
 

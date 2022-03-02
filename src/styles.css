@@ -13,10 +13,32 @@ html,body{
     
 }
 
-.wrapper{
+
+.wrapper {
     background: whitesmoke;
     padding: 30px
 
+}
+
+.wrapper .control{
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+
+.wrapper .control button{
+    height: 50px;
+    width: 100%;
+    outline-color:none;
+
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 1px;
+    border: none;
+    border: 1px solid lightgrey;
+
+    
 }
 
 form{
@@ -32,7 +54,10 @@ form .field {
     
 }
 
+
+
 .login input{
+    
     height: 100%;
     width: 100%;
     outline-color: none;
@@ -40,6 +65,10 @@ form .field {
     font-size: 17px;
     border-radius: 5px;
     border: 1px solid lightgrey;
-    
 
 }
+
+.login input[type="submit"]{
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+

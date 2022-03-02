@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from "./MainPage"
-import "./Login.css"
+import "./styles.css"
 
 class Login extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="wrapper">
+            <div className="form-container">
                 <div className="title">
                     Connectez-vous
                 </div>
