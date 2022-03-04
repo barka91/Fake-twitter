@@ -12,7 +12,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="form-container">
+            <div className="form-login">
                 <div className="title">
                     Connectez-vous
                 </div>

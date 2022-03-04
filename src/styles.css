@@ -16,7 +16,8 @@ html,body{
 
 .wrapper {
     background: whitesmoke;
-    padding: 30px
+    padding: 50px
+    
 
 }
 
@@ -31,10 +32,10 @@ html,body{
     height: 50px;
     width: 100%;
     outline-color:none;
-
     font-size: 17px;
     border-radius: 5px;
     margin: 1px;
+    margin-bottom: 20px;
     border: none;
     border: 1px solid lightgrey;
 
@@ -42,7 +43,7 @@ html,body{
 }
 
 form{
-    display: flex;
+    display: flexbox;
     flex-direction: column;
     
 }
@@ -72,7 +73,7 @@ form .field {
 
 /* signin */
 
-.signin .field input{
+.signin input{
     height: 100%;
     width: 100%;
     outline-color: none;
@@ -81,3 +82,32 @@ form .field {
     border-radius: 5px;
     border: 1px solid lightgrey;
 }
+
+.login input[type="submit"]{
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+
+.signin .radio {
+
+    height: 50px;
+    display: block;
+    text-align: center
+}
+
+.signin .radio .gender-selector{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    
+}
+
+.gender-selector .gender{
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+
+
+
+
