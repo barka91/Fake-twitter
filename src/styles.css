@@ -50,8 +50,6 @@ form{
 form .field {
     height: 50px;
     margin-top: 20px;
-    color: aqua;
-    
 }
 
 
@@ -72,3 +70,14 @@ form .field {
     background: -webkit-linear-gradient(left, #a445b2, #fa4299);
 }
 
+/* signin */
+
+.signin .field input{
+    height: 100%;
+    width: 100%;
+    outline-color: none;
+    padding-left: 15px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}

@@ -52,10 +52,6 @@ class MainPage extends React.Component {
             content = < NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected= {this.state.isConnected} /> ;
         } 
 
-        
-        
-
-
         return (
             <div>
                 MainPage
