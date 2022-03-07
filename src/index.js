@@ -7,8 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import NavigationPannel from "./NavigationPannel"
 import Logout from "./Logout"
 import Login from "./Login"
+import TweetBox from "./TweetBox"
 
-ReactDOM.render(<MainPage page="inscription" />, document.getElementById('root'));
+ReactDOM.render(<MainPage page="connexion" />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

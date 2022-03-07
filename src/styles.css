@@ -54,7 +54,6 @@ form .field {
 }
 
 
-
 .login input{
     
     height: 100%;
@@ -105,9 +104,15 @@ form .field {
 .gender-selector .gender{
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
+    margin: 10px;
 
 }
 
+.gender-selector .gender input[type="radio"]{
+    width: 12px;
+    height: 12px;
+}
 
 
 

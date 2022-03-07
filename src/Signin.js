@@ -15,16 +15,17 @@ class Signin extends React.Component {
                     <form className='signin' method="post">
                         <div className='radio'>
                             <div className="gender-title">
-                                <p>Select your gender:</p>
+                                <p>Selectionnez votre sexe:</p>
                             </div>
                             <div className="gender-selector">
                                 <div className="gender">
-                                    <input type="radio" id="male" name="gender" value="male"/> 
-                                    <label for="male">Male</label>
+
+                                    <input type="radio" id="male"  value="male"/> 
+                                    <label for="male">Homme</label>                                    
                                 </div>
                                 <div className="gender">
-                                    <input type="radio" id="female" name="gender" value="female"/>
-                                    <label for="female">Female</label>
+                                    <input type="radio" id="female" value="female"/>
+                                    <label for="female">Femme</label>
                                 </div>
                             </div>
 
