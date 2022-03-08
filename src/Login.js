@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from "./MainPage"
-import "./styles.css"
+import "./Login.css"
 
 class Login extends React.Component {
     constructor(props) {

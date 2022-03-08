@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavigationPannel from './NavigationPannel';
 import Signin from './Signin';
-import "./styles.css"
+import "./MainPage.css"
 
 class MainPage extends React.Component {
     constructor(props) {

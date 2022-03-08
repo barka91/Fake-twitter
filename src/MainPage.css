@@ -1,0 +1,21 @@
+.wrapper {
+    background: whitesmoke;
+    padding: 50px;
+}
+
+.wrapper .control{
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper .control button{
+    height: 50px;
+    width: 100%;
+    outline-color:none;
+    font-size: 17px;
+    border-radius: 5px;
+    margin: 1px;
+    margin-bottom: 20px;
+    border: none;
+    border: 1px solid lightgrey;
+}
