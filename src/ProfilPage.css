@@ -1,12 +1,24 @@
 .profil{
-    width: 50px;
-    
+    background-color: navy;
+    min-height: 100vh;
+    max-width: 900px;
+    width: 100vw;
+    padding-left: 1px;
+
 }
 
 .profil .banniere{
-    inset: 0px;
     height: 100%;
-    position: absolute;
     width: 100%;
-    z-index: -1;
+}
+
+.profil .banniere img{
+    
+    height: 30vh;
+    width: 100%;
+    position: absolute;
+    clip:rect();
+    z-index: 1;
+
+    overflow:hidden
 }

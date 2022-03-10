@@ -54,7 +54,6 @@ class MainPage extends React.Component {
 
         return (
             <div>
-                MainPage
                 <div className='wrapper'>
                     <div className='control'>
                         <button type = "submit" onClick = {this.setSignin}> 

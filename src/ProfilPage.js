@@ -11,12 +11,13 @@ class ProfilPage extends React.Component {
     render() {
         return (
             <div className='profil'>
-                <div className='avatar'>
-                    <img src={avatar}></img>
-                </div>
                 <div className='banniere'>
                     <img src={banniere}/>
                 </div>
+                <div className='avatar'>
+                    <img src={avatar}></img>
+                </div>
+                
                 <div className='username'>
                     <span>usopp </span>
                 </div>
