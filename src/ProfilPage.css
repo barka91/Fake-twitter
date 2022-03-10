@@ -1,0 +1,12 @@
+.profil{
+    width: 50px;
+    
+}
+
+.profil .banniere{
+    inset: 0px;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
