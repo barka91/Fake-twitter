@@ -19,6 +19,6 @@ class Avatar extends React.Component {
             
         )
 
-    }S
+    }
 }
 export default Avatar;
