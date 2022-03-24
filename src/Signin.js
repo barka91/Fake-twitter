@@ -32,13 +32,13 @@ class Signin extends React.Component {
 
                         </div>
                         <div className='field'>
-                            <input type="text" placeholder="prénom"/>
+                            <input type="text" placeholder="Prénom"/>
                         </div>
                         <div className='field'>
                             <input type="text" placeholder='Nom de famille' />
                         </div>
                         <div className='field'>
-                            <input type="email" placeholder='adresse email'/>
+                            <input type="email" placeholder='Adresse email'/>
                         </div>
                         <div className='field'>
                             <input type="text" placeholder="Nom d'utilisateur" autocomplete="off" />
