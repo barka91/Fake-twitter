@@ -17,22 +17,26 @@ class ProfilPage extends React.Component {
                 <div className='avatar'>
                     <img src={avatar}></img>
                 </div>
-                
-                <div className='username'>
-                    <span>usopp </span>
+                <div className='text'>
+                    <div className='username'>
+                        <span>usopp </span>
+                    </div>
+                    <div className='id'>
+                        <span>@sogeking</span>
+                    </div>
+                    <div className='description'>
+                        <span>Le vrai capitaine</span>
+                    </div>                
+                    <div className='info'>
+                        <div className='lieu'>
+                            <span>Sirop, East Blue</span>
+                        </div>
+                        <div className='date'>
+                            <span>Naissance le 1 avril 2001</span>
+                        </div>
+                    </div>
+                        <span></span>
                 </div>
-                <div className='id'>
-                    <span>@sogeking</span>
-                </div>
-                <div className='Description'>
-                    <span>Le vrai capitaine</span>
-                </div>                
-                <div className='info'>
-                    <span>Sirop, East Blue</span>
-                    <span>Naissance le 1 avril 2001</span>
-                    <span></span>
-                </div>
-
 
             </div>
         )

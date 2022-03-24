@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import twitter from "./media/twitter.svg"
+import iconHome from "./media/icon_home.png"
 class SideBar extends React.Component {
     constructor(props) {
         super(props)
@@ -9,15 +9,19 @@ class SideBar extends React.Component {
 
     render() {
         return (
-            <div className="sidebar">
-              
-            
+            <div className="sidebar">       
                 <div className="home">
-                  <img src={twitter}/>
-                  <h2>Home</h2>
+                  <h2>Accueil</h2>
                 </div>
-              
-        
+                <div className="explore">
+                  <h2>Explore</h2>
+                </div>
+                <div className="friends">
+                  <h2>Amis</h2>
+                </div>
+                <div className="message">
+                  <h2>Message</h2>
+                </div>       
             </div>
           );
     }

@@ -1,13 +1,13 @@
 .profil{
     
-    background-color: navy;
-    min-height: 100vh;
-    max-width: 900px;
+    background-color: grey;
+    
+    max-width:900px ;
     width: 100vw;
     padding-left: 1px;
-
+    
+    
 }
-
 
 .profil .banniere{
     max-height: 200px;
@@ -18,18 +18,61 @@
 
 .profil .banniere img{
     height: 100%;
+    object-fit:cover;
     
 }
 .profil .avatar{
-    margin-top: -15%;
+    
+    width:125px;
+    margin:10px; 
+    margin-top: -7.5%;
+
 
 }
 
 .profil .avatar img{
-    
+    max-height:125px;
     max-width : 200px;
-    max-height : 150px;
     border-radius: 50%;
+    border:solid 5px white;
     
+}
+
+.text{
+    background-color:palegoldenrod;
+}
+
+.username{
+    font-weight: 800;
+    font-size: x-large;
+}
+
+.id {
+    font-size: small;
+    color: rgb(83, 100, 113);
+    margin-top:0px ;
+    margin-left:5px;
+}
+
+.description {
     
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.info {
+    
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: solid black;
+}
+
+.lieu {
+    background-color: brown;
+}
+
+.date{
+    margin-left: 10px;
+    background-color: red;
 }
