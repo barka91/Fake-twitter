@@ -11,7 +11,7 @@ class SideBar extends React.Component {
         return (
             <div className="sidebar">
               <nav className='principal'>
-                <a href=''>
+                <a href='' className='home'>
                   <div>
                     <div className='icon'>
 
@@ -31,16 +31,28 @@ class SideBar extends React.Component {
                     </div>
                   </div>
                 </a>
+                <a href='' className='friends'>
+                  <div>
+                    <div className='icon'>
 
-              </nav>       
-                
-                
-                <div className="friends">
-                  <h2>Amis</h2>
-                </div>
-                <div className="message">
-                  <h2>Message</h2>
-                </div>       
+                    </div>
+                    <div className='text'>
+                      <h2>Amis</h2>
+                    </div>
+                  </div>
+                </a>
+                <a href='' className='message'>
+                  <div>
+                    <div className='icon'>
+
+                    </div>
+                    <div className='text'>
+                      <h2>Massage</h2>
+                    </div>
+                  </div>
+                </a>
+
+              </nav>            
             </div>
           );
     }

@@ -2,7 +2,7 @@
     
     background-color: grey;
     
-    max-width:900px ;
+    max-width:600px ;
     width: 100vw;
     padding-left: 1px;
     
@@ -24,8 +24,8 @@
     
 }
 .profil .avatar{
-    
-    width:125px;
+    background-color: black;
+    width:fit-content;
     margin:10px; 
     margin-top: -7.5%;
 
@@ -34,7 +34,7 @@
 
 .profil .avatar img{
     max-height:125px;
-    max-width : 200px;
+    max-width : 125px;
     border-radius: 50%;
     border:solid 5px white;
     
@@ -44,16 +44,14 @@
     background-color:palegoldenrod;
 }
 
-.username{
+.profil .username{
     font-weight: 800;
     font-size: x-large;
 }
 
-.id {
+.profil .id {
     font-size: small;
     color: rgb(83, 100, 113);
-    margin-top:0px ;
-    margin-left:5px;
 }
 
 .description {
@@ -78,3 +76,46 @@
     margin-left: 10px;
     background-color: red;
 }
+
+.post {
+    display: flex;
+    flex-direction: row
+}
+
+
+.post .avatar{
+
+    background-color: blueviolet;
+    width: fit-content;
+    height: inherit;
+}
+
+.post .avatar img {
+    max-height:48px;
+    max-width : 48px;
+    border-radius: 50%;
+}
+
+.post_main .header{
+    display:flex;
+    flex-direction: row;
+    margin-left: 10px
+}
+
+.post_main .header .username {
+    font-weight: 700;
+
+}
+
+.post_main .header .id {
+    margin: 0 3px 0 5px;
+    font-size: small;
+    color: rgb(83, 100, 113);
+}
+
+.post .tweet {
+    background:gold;
+    width: 400px;
+    height: 400px;
+}
+
