@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './SideBar.css'
 
 import iconHome from "./media/icon_home.png"
 class SideBar extends React.Component {
@@ -9,13 +9,32 @@ class SideBar extends React.Component {
 
     render() {
         return (
-            <div className="sidebar">       
-                <div className="home">
-                  <h2>Accueil</h2>
-                </div>
-                <div className="explore">
-                  <h2>Explore</h2>
-                </div>
+            <div className="sidebar">
+              <nav className='principal'>
+                <a href=''>
+                  <div>
+                    <div className='icon'>
+
+                    </div>
+                    <div className='text'>
+                      <h2>Accueil</h2>
+                    </div>
+                  </div>
+                </a>
+                <a href='' className='explore'>
+                  <div>
+                    <div className='icon'>
+
+                    </div>
+                    <div className='text'>
+                      <h2>Explore</h2>
+                    </div>
+                  </div>
+                </a>
+
+              </nav>       
+                
+                
                 <div className="friends">
                   <h2>Amis</h2>
                 </div>

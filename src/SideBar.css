@@ -1,0 +1,36 @@
+.sidebar {
+    background-color: ;
+    height: 100vh;
+    min-width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+  }
+  
+a:link {
+color: green;
+}
+
+a:visited {
+color: pink;
+}
+
+a:focus {
+
+}
+
+a:hover {
+color:black;
+
+}
+
+a:active {
+color:aqua;
+}

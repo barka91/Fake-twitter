@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SideBar from "./SideBar.js";
 import ProfilPage from "./ProfilPage.js";
+import "./Main.css"
 
 class Main extends React.Component {
     constructor(props) {
@@ -9,8 +10,12 @@ class Main extends React.Component {
 
     render() {
         return (
-            <SideBar/>
-            <ProfilPage/>
+            <div className='main'>
+                <SideBar />
+                <ProfilPage />
+            </div>
+            
+    
         );
     }
 }
