@@ -1,0 +1,67 @@
+
+.profilbox {
+    border-bottom: solid 1px black;
+}
+
+.profilbox .banniere{
+
+    height: 200px;
+    display: flex;
+    /* flex-direction: column; */
+
+}
+
+.profilbox .banniere img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+.profilbox .avatar{
+
+    width:fit-content;
+    margin:10px;
+    margin-top: -7.5%;
+
+
+}
+
+.profilbox .avatar img{
+    max-height:125px;
+    max-width : 125px;
+    border-radius: 50%;
+    border:solid 5px white;
+
+}
+
+.profilbox .text{
+    margin:5px
+}
+
+.profilbox .username{
+    font-weight: 800;
+    font-size: x-large;
+}
+
+.profilbox .id {
+    font-size: small;
+    color: rgb(83, 100, 113);
+}
+
+.description {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.info {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+
+.date{
+    margin-left: 10px;
+}

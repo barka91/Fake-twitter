@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import NavigationPannel from './NavigationPannel';
 import Signin from './Signin';
-import "./MainPage.css"
+import Main from './Main'
+import "./styles/MainPage.css"
+import ProfilPage from './ProfilPage';
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -12,6 +14,8 @@ class MainPage extends React.Component {
         this.getConnected = this.getConnected.bind(this);
         this.setLogout = this.setLogout.bind(this);
         this.setSignin = this.setSignin.bind(this);
+        this.setHome = this.setHome.bind(this);
+        this.setProfil = this.setProfil.bind(this);
     }
 
     getConnected(){
@@ -40,6 +44,20 @@ class MainPage extends React.Component {
         });    
     }
 
+    setHome(){
+        this.setState((state) => {
+            state.page = "mur de tweets";
+            return state;
+        }); 
+    }
+
+    setProfil(){
+        this.setState((state) => {
+            state.page = "profil";
+            return state;
+        }); 
+    }
+
     
 
     render() {
@@ -48,26 +66,38 @@ class MainPage extends React.Component {
         
         if (this.state.page == "inscription") {
             content = < Signin/>;
-        } else if (this.state.page == "connexion") {
+        } else {
             content = < NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected= {this.state.isConnected} /> ;
         } 
+        
 
-        return (
-            <div>
-                <div className='wrapper'>
-                    <div className='control'>
-                        <button type = "submit" onClick = {this.setSignin}> 
-                            inscription 
-                        </button>
-                        <button type = "submit" onClick = {this.setLogout}> 
-                            connexion 
-                        </button>
-                    </div>
-                    {content}
-                </div>            
+        if (this.state.isConnected == false) {
+            return (
+                <div>
+                    <div className='wrapper'>
+                        <div className='control'>
+                            <button type = "submit" onClick = {this.setSignin}> 
+                                inscription 
+                            </button>
+                            <button type = "submit" onClick = {this.setLogout}> 
+                                connexion 
+                            </button>
+                        </div>
+                        {content}
+                    </div>           
+                </div>
+            )
+        }
+        else {
+            return(
+                <div>
+                {content}
+                <Main page={this.state.page}/>
             </div>
-        )
-
+            )
+            
+        }  
+        
     }
 
 }

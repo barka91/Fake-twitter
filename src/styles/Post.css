@@ -1,0 +1,55 @@
+.post {
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.post .avatar{
+
+
+    width: fit-content;
+    height: inherit;
+    margin-right: 12px;
+}
+
+.post .avatar img {
+    max-height:48px;
+    max-width : 48px;
+    border-radius: 50%;
+}
+
+.post .post_main{
+
+
+    max-width: 700px;
+    margin-bottom: 12px;
+    flex-grow: 0.5;
+}
+
+.post_main .header{
+    display:flex;
+    flex-direction: row;
+    margin-left: 10px
+}
+
+.post_main .header .username {
+    font-weight: 700;
+
+}
+
+.post_main .header .id {
+    margin: 0 3px 0 5px;
+    color: rgb(83, 100, 113);
+}
+
+.post_main .tweet .photo {
+    margin-top: 8px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+}  

@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: ;
+
     height: 100vh;
     min-width: 25vw;
     display: flex;
@@ -8,26 +8,39 @@
     align-items: center;
 }
 
+.sidebar .info {
+  background: rgb(172, 172, 172);
+  padding: 10px ;
+  border-radius: 10px;
+
+}
+
+.info .avatar{
+
+
+  width: fit-content;
+  height: inherit;
+  margin-right: 12px;
+}
+
+.info .avatar img {
+  max-height:48px;
+  max-width : 48px;
+  border-radius: 50%;
+}
+
 a {
     outline: none;
     text-decoration: none;
     padding: 2px 1px 0;
-  }
-  
-a:link {
-color: green;
 }
 
 a:visited {
 color: pink;
 }
 
-a:focus {
-
-}
-
 a:hover {
-color:black;
+color:rgb(234, 0, 255);
 
 }
 

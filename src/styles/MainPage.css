@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     background: whitesmoke;
     padding: 50px;
 }
@@ -19,3 +20,4 @@
     border: none;
     border: 1px solid lightgrey;
 }
+

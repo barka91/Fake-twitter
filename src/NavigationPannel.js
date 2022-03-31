@@ -20,10 +20,7 @@ class NavigationPannel extends React.Component {
         } else {
             return( < Login method={this.state.login}/> );
         }
-
-    
-            
-        
+     
     }
 }
 export default NavigationPannel;
