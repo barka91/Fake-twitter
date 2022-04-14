@@ -1,85 +1,69 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import axios from 'axios'
 import NavigationPannel from './NavigationPannel';
 import Signin from './Signin';
 import Main from './Main'
 import "./styles/MainPage.css"
 import ProfilPage from './ProfilPage';
 
-class MainPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            page : props.page, 
-            isConnected : false };
-        this.getConnected = this.getConnected.bind(this);
-        this.setLogout = this.setLogout.bind(this);
-        this.setSignin = this.setSignin.bind(this);
-        this.setHome = this.setHome.bind(this);
-        this.setProfil = this.setProfil.bind(this);
-    }
 
-    getConnected(){
 
-        this.setState((state) => {
-            state.page = "mur de tweets";
-            state.isConnected = true;
-            return state;
-        });  
-    }
+const MainPage = () => {
+        const [page, setPage] = useState('')
+        const [isConnected, setConnected] = useState(false)
+        const api=axios.create({
+            withCredentials: true,
+            baseURL: 'http://localhost:4000'
+        });
 
-    setLogout() {
-
-        this.setState((state) => {
-            state.page = "connexion";
-            state.isConnected = false;
-            return state;
-        });    
-    }
-
-    setSignin() {
-
-        this.setState((state) => {
-            state.page = "inscription";
-            return state;
-        });    
-    }
-
-    setHome(){
-        this.setState((state) => {
-            state.page = "mur de tweets";
-            return state;
-        }); 
-    }
-
-    setProfil(){
-        this.setState((state) => {
-            state.page = "profil";
-            return state;
-        }); 
-    }
-
-    
-
-    render() {
-        let content;
+    function getConnected(){
+        return new Promise (resolve => {
+            api.post('api/user/login',{
+            login: "login",
+            password: "password"
+            })
+            .then((response) => {
+                setPage('mur de tweets');
+                setConnected(true);  
+                resolve();
+            });
+        })
         
-        
-        if (this.state.page == "inscription") {
-            content = < Signin/>;
-        } else {
-            content = < NavigationPannel login={this.getConnected} logout={this.setLogout} isConnected= {this.state.isConnected} /> ;
-        } 
-        
+    }
 
-        if (this.state.isConnected == false) {
+    function setLogout() {
+        setConnected(false)
+    }
+
+    function setSignin() {
+        setPage('inscription') 
+    }
+
+    function setHome(){
+        setPage('mur de tweets')
+    }
+
+    function setProfil(){
+        setPage('profil')
+    }
+
+    let content;
+    if(page == 'inscription') {
+        content = <Signin/>
+    }
+    else {
+        content = < NavigationPannel login={getConnected} logout={setLogout} isConnected={isConnected}></NavigationPannel>
+    }
+    if (isConnected == false) {
+        
             return (
                 <div>
                     <div className='wrapper'>
                         <div className='control'>
-                            <button type = "submit" onClick = {this.setSignin}> 
+                            <button type = "submit" onClick = {setSignin}> 
                                 inscription 
                             </button>
-                            <button type = "submit" onClick = {this.setLogout}> 
+                            <button type = "submit" onClick = {setLogout}> 
                                 connexion 
                             </button>
                         </div>
@@ -92,14 +76,13 @@ class MainPage extends React.Component {
             return(
                 <div>
                 {content}
-                <Main page={this.state.page}/>
+                <Main page={page}/>
             </div>
             )
             
         }  
         
-    }
-
+    
 }
 
     
