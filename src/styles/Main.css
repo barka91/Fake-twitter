@@ -3,3 +3,26 @@
     flex-direction: row;
 }
 
+.main .side {
+    position: fixed;
+    background-color: red;
+    
+
+}
+.main .content {
+    left:0;
+    /* background-color: aqua; */
+
+    margin-left: 20vw;
+    max-width:900px ;
+    width: 150vw;
+    
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+}
+
+.elem{
+   
+    
+    
+}

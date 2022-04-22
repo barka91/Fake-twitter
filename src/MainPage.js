@@ -1,39 +1,51 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
-import NavigationPannel from './NavigationPannel';
 import Signin from './Signin';
+import Logout from "./Logout"
+import Login from "./Login"
 import Main from './Main'
 import "./styles/MainPage.css"
-import ProfilPage from './ProfilPage';
+// import ProfilPage from './ProfilPage';
 
-
-
-const MainPage = () => {
-        const [page, setPage] = useState('')
-        const [isConnected, setConnected] = useState(false)
+function MainPage() {
+        const [page, setPage] = useState('');
+        const [isConnected, setConnected] = useState(false);
         const api=axios.create({
-            withCredentials: true,
+            withCredentials: 'true',
             baseURL: 'http://localhost:4000'
         });
 
     function getConnected(){
-        return new Promise (resolve => {
-            api.post('api/user/login',{
-            login: "login",
-            password: "password"
-            })
-            .then((response) => {
-                setPage('mur de tweets');
-                setConnected(true);  
-                resolve();
-            });
-        })
         
+        var log = document.getElementById("log").value;
+        var psw = document.getElementById("psw").value;
+        api.post("/api/user/login",
+            {
+                login:log,
+                password:psw,
+            }
+        ).then(response => {
+            setPage("mur de tweets");
+            setConnected(true);
+            console.log(response);
+        }
+            
+        ).catch(error => {
+            console.log(error.response)
+        });     
+            
+    }
+
+    function theophaneacinqmaster() {
+        setPage("mur de tweets");
+        setConnected(true);
     }
 
     function setLogout() {
-        setConnected(false)
+        setConnected(false);
+        setPage('connexion')
     }
+    
 
     function setSignin() {
         setPage('inscription') 
@@ -48,42 +60,51 @@ const MainPage = () => {
     }
 
     let content;
-    if(page == 'inscription') {
+    if(page === 'inscription') {
         content = <Signin/>
     }
     else {
-        content = < NavigationPannel login={getConnected} logout={setLogout} isConnected={isConnected}></NavigationPannel>
+        content = <Login method={getConnected}/>
     }
-    if (isConnected == false) {
-        
-            return (
-                <div>
-                    <div className='wrapper'>
-                        <div className='control'>
-                            <button type = "submit" onClick = {setSignin}> 
-                                inscription 
-                            </button>
-                            <button type = "submit" onClick = {setLogout}> 
-                                connexion 
-                            </button>
+    
+    if (!isConnected) {
+        return (
+            <div>
+                <div className='wrapper'>
+                    <div className='control'>
+                        <div>
+                            <input type="radio" id="inscription" name="drone" value="inscription"  onClick = {setSignin} />
+                            <label for="inscription">Inscription</label>
                         </div>
-                        {content}
-                    </div>           
+                        <div>
+                            <input type="radio" id="connexion" name="drone" value="connexion" onClick = {setLogout}/>
+                            <label for="connexion">connexion</label>
+                        </div>
+                    </div>
+                    {content}
                 </div>
-            )
-        }
-        else {
-            return(
-                <div>
-                {content}
-                <Main page={page}/>
-            </div>
-            )
-            
-        }  
         
+            </div>
+        )
+    }
+    else {
+        return(
+            <div>
+                <Main page={page} logout={setLogout}/>
+            </div>
+        )
+        
+    }  
+    
     
 }
 
     
 export default MainPage;
+
+{/* <button type = "radio" onClick = {setSignin}> 
+                                inscription 
+                            </button>
+                            <button type = "radio" onClick = {setLogout}> 
+                                connexion 
+                            </button> */}

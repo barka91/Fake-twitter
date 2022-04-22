@@ -9,7 +9,7 @@ class Post extends React.Component {
     }
     render() {
         return (
-            <div className="post">
+            <div className="post elem">
                     <div className="avatar">
                         <img src={avatar}></img>
                     </div>

@@ -21,13 +21,14 @@ class Signin extends React.Component {
                             <div className="gender-selector">
                                 <div className="gender">
 
-                                    <input type="radio" id="male"  value="male"/> 
+                                    <input type="radio" id="male" name='gender' value="male"/> 
                                     <label for="male">Homme</label>                                    
                                 </div>
                                 <div className="gender">
-                                    <input type="radio" id="female" value="female"/>
+                                    <input type="radio" id="female" name='gender' value="female"/>
                                     <label for="female">Femme</label>
                                 </div>
+                               
                             </div>
 
                         </div>
@@ -41,10 +42,10 @@ class Signin extends React.Component {
                             <input type="email" placeholder='Adresse email'/>
                         </div>
                         <div className='field'>
-                            <input type="text" placeholder="Nom d'utilisateur" autocomplete="off" />
+                            <input type="text" placeholder="Nom d'utilisateur" autoComplete="off" />
                         </div>
                         <div className='field'>
-                            <input type="password" placeholder='Mot de passe' autocomplete="new-password"/>
+                            <input type="password" placeholder='Mot de passe' autoComplete="new-password"/>
                         </div>
                         <div className="field btn">
                             <input type = "submit" value="Inscription" /> 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from "./MainPage"
+import setLogout from "./MainPage"
 
 class Logout extends React.Component {
     constructor(props) {
@@ -13,9 +14,19 @@ class Logout extends React.Component {
     render() {
         return (
             <div>
-                <button type = "submit" onClick = {this.state.method}> 
+                {/* <button type = "submit" onClick = {setLogout}> 
                     Déconnexion
-                </button>
+                </button> */}
+                <a href='#' className='Deconnexion' onClick={this.state.method}>
+                  <div>
+                    <div className='icon'>
+
+                    </div>
+                    <div className='text'>
+                      <h2>Deconnexion</h2>
+                    </div>
+                  </div>
+                </a>
             </div>
             
         )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './styles/HomePage.css'
 import Post from './Post';
 import TweetBox from './TweetBox';
 

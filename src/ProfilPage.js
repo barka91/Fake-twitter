@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./styles/ProfilPage.css"
 import Post from "./Post"
 import ProfilBox from './ProfilBox'
 
@@ -13,7 +12,7 @@ class ProfilPage extends React.Component {
     render() {
         return (
             <div className='profilpage'>
-                <div className='profil'>
+                <div className='profil elem'>
                     <ProfilBox/>
                 </div>
                 <Post />

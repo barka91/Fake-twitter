@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import avatar from "./media/1ceac0b83e8307449c91f21113b21762.jpg"
-
+// import avatar from "./media/1ceac0b83e8307449c91f21113b21762.jpg"
+import Logout from './Logout';
 import './styles/SideBar.css'
 
 import iconHome from "./media/icon_home.png"
@@ -9,7 +9,8 @@ class SideBar extends React.Component {
         super(props);
         this.state = {
           pprofil : props.pprofil, 
-          paccueil : props.paccueil
+          paccueil : props.paccueil,
+          logout : props.logout
       };
     }
 
@@ -18,7 +19,7 @@ class SideBar extends React.Component {
             <div className="sidebar">
               <div className='info' onClick={this.state.pprofil}>
                 <div className='avatar'>
-                    <img src={avatar} />
+                    {/* <img src={avatar} /> */}
                 </div>
                 <div className='text'>
                     <div className='username'>
@@ -29,6 +30,7 @@ class SideBar extends React.Component {
                     </div>
                   </div>
               </div>
+              <Logout method={this.state.logout}/>
               <nav className='principal'>
                 <a href='#' className='home' onClick={this.state.paccueil}>
                   <div>
@@ -70,7 +72,7 @@ class SideBar extends React.Component {
                     </div>
                   </div>
                 </a>
-
+                
               </nav>
             </div>
           );

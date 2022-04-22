@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import MainPage from "./MainPage"
 import * as serviceWorker from './serviceWorker';
-import NavigationPannel from "./NavigationPannel"
 import Logout from "./Logout"
 import Login from "./Login"
 import TweetBox from "./TweetBox"
