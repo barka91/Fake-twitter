@@ -7,14 +7,13 @@ class Users {
     // suite plus tard avec la BD
   }
 
-  create(login, password, lastname, firstname) {
+  create(name,login,password) {
     return new Promise((resolve, reject) => {
       // let userid = 1; // À remplacer par une requête bd
       const user = {
-        login: login,
-        password: password,
-        lastname: lastname,
-        firstname: firstname
+        name:name,
+        login:login,
+        password:password,
       }
 
       this.db.users.insert(user, function (err,newDoc) {

@@ -4,11 +4,11 @@ import Signin from './Signin';
 import Logout from "./Logout"
 import Login from "./Login"
 import Main from './Main'
-import "./styles/MainPage.css"
+import "./styles/MainPage2.css"
 // import ProfilPage from './ProfilPage';
 
 function MainPage() {
-        const [page, setPage] = useState('');
+        const [page, setPage] = useState('inscription');
         const [isConnected, setConnected] = useState(false);
         const api=axios.create({
             withCredentials: 'true',
@@ -17,12 +17,12 @@ function MainPage() {
 
     function getConnected(){
         
-        var log = document.getElementById("log").value;
-        var psw = document.getElementById("psw").value;
+        var login = document.getElementById("login").value;
+        var pass = document.getElementById("pass").value;
         api.post("/api/user/login",
             {
-                login:log,
-                password:psw,
+                login:login,
+                password:pass,
             }
         ).then(response => {
             setPage("mur de tweets");
@@ -36,9 +36,27 @@ function MainPage() {
             
     }
 
-    function theophaneacinqmaster() {
-        setPage("mur de tweets");
-        setConnected(true);
+    function sign(){
+        var name = document.getElementById("name").value;
+        var login = document.getElementById("login").value;
+        var pass = document.getElementById("pass").value;
+        var re_pass = document.getElementById("re_pass").value;
+        api.post("/api/user/signin",
+            {
+                name:name,
+                login:login,
+                password:pass,
+                re_password:re_pass,
+            }
+        ).then(response => {
+            setPage("connexion");
+            console.log(response);
+        }
+            
+        ).catch(error => {
+            console.log(error.response)
+        });     
+            
     }
 
     function setLogout() {
@@ -61,17 +79,17 @@ function MainPage() {
 
     let content;
     if(page === 'inscription') {
-        content = <Signin/>
+        content = <Signin method={sign} toLogin={setLogout}/>
     }
     else {
-        content = <Login method={getConnected}/>
+        content = <Login method={getConnected} toSignup={setSignin}/>
     }
     
     if (!isConnected) {
         return (
             <div>
-                <div className='wrapper'>
-                    <div className='control'>
+                <div className='mainpage'>
+                    {/* <div className='control'>
                         <div>
                             <input type="radio" id="inscription" name="drone" value="inscription"  onClick = {setSignin} />
                             <label for="inscription">Inscription</label>
@@ -80,7 +98,7 @@ function MainPage() {
                             <input type="radio" id="connexion" name="drone" value="connexion" onClick = {setLogout}/>
                             <label for="connexion">connexion</label>
                         </div>
-                    </div>
+                    </div> */}
                     {content}
                 </div>
         

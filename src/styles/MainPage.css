@@ -1,12 +1,15 @@
 .wrapper {
-    position: absolute;
+    /* position: absolute;
     transform: translate(-50%,-50%); 
     top: 50%;
     left: 50%;
     background: whitesmoke;
     padding: 50px;
     width: 35vw;
-    height: 100vh;
+    height: 100vh; */
+
+    padding: 150px 0;
+    background: #fdf;
 }
 
 .wrapper .control{
@@ -31,11 +34,11 @@
 
 
  
-input[type="radio"]{
+.control input[type="radio"]{
     display: none;
  }
 
-label {
+.control label {
     position: relative;
     color: #01cc65;
     width: 100%;
@@ -52,7 +55,7 @@ label {
     
 }
 
-label::before{
+.control label::before{
     content: "";
     height: 15px;
     width: 15px;
@@ -60,11 +63,11 @@ label::before{
     border-radius: 50%;
     /* margin-right: 20px; */
 }
-input[type="radio"]:checked + label {
+.control input[type="radio"]:checked + label {
     background-color: #01cc65;
     color: white;
 }
-input[type="radio"]:checked + label:before {
+.control input[type="radio"]:checked + label:before {
     height: 7px;
     width: 7px;
     border: 5px solid white;

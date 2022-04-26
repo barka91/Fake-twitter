@@ -36,7 +36,6 @@ function init(db) {
                 return;
             }
             let userid = await users.checkpassword(login, password);
-            console.log("br");
             if (userid) {
                 console.log("b45");
                 // Avec middleware express-session
@@ -67,7 +66,6 @@ function init(db) {
                 status: 403,
                 message: "login et/ou le mot de passe invalide(s)"
             });
-            console.log("brcomml");
             return;
         }
         catch (e) {
@@ -79,6 +77,27 @@ function init(db) {
                 number: 9
             });
         }
+    });
+
+    router.post("/user/signin", async (req, res) => {
+        try {
+            const { name,login, password } = req.body;
+            if (await users.create(name,login, password)) {
+                res.status(200).json({
+                    status: 200,
+                    message: "Login et mot de passe accepté",
+                });
+            };
+
+        } catch (error) {
+            res.status(500).json({
+                status: 500,
+                message: "erreur interne",
+                details: (error || "Erreur inconnue").toString(),
+                number: 10
+            });
+        }
+
     });
 
     router
