@@ -15,6 +15,8 @@ var Datastore = require('nedb')
 db = {};
 db.users = new Datastore('../users.db');
 db.users.loadDatabase();
+db.posts = new Datastore('../posts.db');
+db.posts.loadDatabase();
 // var doc = { login:'pikachu',
 //             password:'1234',
 //             lastname:'chu',
@@ -36,7 +38,9 @@ app.use(cors({
  }));
 
 app.use(session({
-    secret: "technoweb rocks"
+    secret: "technoweb rocks",
+    resave: true,
+    saveUninitialized: true
 }));
 
 app.use('/api', api.default(db));

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainPage from "./MainPage"
 import "./styles/Login.css"
-import signin_img from "./media/happy_chatting.png"
+import signup_img from "./media/happy_chatting.png"
 
 class Login extends React.Component {
     constructor(props) {
@@ -15,12 +15,12 @@ class Login extends React.Component {
     render() {
         return (
             <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src={signin_img} alt="sign in image"/></figure>
-                        <a href="#" class="signin-image-link" onClick={this.state.toSignup}>Créer un compte</a>
+                <div class="signup-content">
+                    <div class="signup-image">
+                        <figure><img src={signup_img} alt="sign in image"/></figure>
+                        <a href="#" class="signup-image-link" onClick={this.state.toSignup}>Créer un compte</a>
                     </div>
-                    <div class="signin-form">
+                    <div class="signup-form">
                         <h2 class="form-title">Connectez-vous</h2>
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
@@ -30,7 +30,7 @@ class Login extends React.Component {
                                 <input type="password" name="pass" id="pass" placeholder="Mot de passe"/>
                             </div>
                             <div class="form-group form-button">
-                                <input type="button" name="signin" id="signin" class="form-submit" value="Suivant" onClick = {this.state.method}/>
+                                <input type="button" name="signup" id="signup" class="form-submit" value="Suivant" onClick = {this.state.method}/>
                             </div>
                         </form>
                     </div>

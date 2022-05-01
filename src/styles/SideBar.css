@@ -1,11 +1,51 @@
+/* The side navigation menu */
 .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Sidebar links 
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+  
+}
+
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+ */
+
+
+/* .sidebar {
   height: 100vh;
   min-width: 20vw;  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: fixed;
 }
+*/
 
 .sidebar .info {
   background: rgb(172, 172, 172);
@@ -15,8 +55,6 @@
 }
 
 .info .avatar{
-
-
   width: fit-content;
   height: inherit;
   margin-right: 12px;
@@ -27,7 +65,6 @@
   max-width : 48px;
   border-radius: 50%;
 }
-
 a {
     outline: none;
     text-decoration: none;
@@ -45,4 +82,4 @@ color:rgb(234, 0, 255);
 
 a:active {
 color:aqua;
-}
+} 

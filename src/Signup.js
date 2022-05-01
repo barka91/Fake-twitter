@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MainPage from "./MainPage"
-import "./styles/Signin2.css"
+import "./styles/Signup.css"
 import signup_img from "./media/happy_chatting.png"
 
-class Signin extends React.Component {
+class Signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +27,7 @@ class Signin extends React.Component {
                                 <input type="login" name="login" id="login" placeholder="Nom d'utilisateur"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="pass" id="pass" placeholder="Mot de passe"/>
+                                <input type="password" name="pass" id="pass" placeholder="Mot de passe" autocomplete="new-password"/>
                             </div>
                             <div class="form-group">
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Confirmer le mot de passe"/>
@@ -49,13 +49,13 @@ class Signin extends React.Component {
     
     
 }
-export default Signin;
+export default Signup;
 
 // render() {
 //     return (
-//         <div className="form-signin">
+//         <div className="form-signup">
 //             <div className="form-inner">
-//                 <form className='signin' method="post">
+//                 <form className='signup' method="post">
 //                     <div className='radio'>
 //                         <div className="gender-title">
 //                             <p>Selectionnez votre sexe:</p>

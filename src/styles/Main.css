@@ -1,28 +1,44 @@
-.main{
+ .main{
     display: flex;
     flex-direction: row;
-}
-
-.main .side {
-    position: fixed;
-    background-color: red;
     
-
 }
+/*
 .main .content {
-    left:0;
-    /* background-color: aqua; */
 
-    margin-left: 20vw;
     max-width:900px ;
     width: 150vw;
-    
-    border-left: solid 1px black;
-    border-right: solid 1px black;
+
+} */
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+.main .content {
+  margin-left: 200px;
+  max-width:900px ;
+  width: 150vw;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
 }
 
-.elem{
-   
-    
-    
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .main {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: sticky !important;
+    z-index: 100 !important;
+    top: 0 !important;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .main .content {
+    margin-left: 0;
+    width: 100%;
+  }
 }
+

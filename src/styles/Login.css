@@ -6,17 +6,17 @@
     border-radius: 20px;
 }
 
-.signin-content {
+.signup-content {
     display: flex;
     padding: 75px 0; 
 }
 
-.signin-form, .signin-image {
+.signup-form, .signup-image {
     width: 50%;
     overflow: hidden; 
 }
 
-.signin-form {
+.signup-form {
     margin-right: 75px;
     padding-right: 35px;
     padding-left: 35px; 

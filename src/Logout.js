@@ -2,22 +2,12 @@ import React, { Component } from 'react';
 import MainPage from "./MainPage"
 import setLogout from "./MainPage"
 
-class Logout extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            method : props.method
-        };
-    }
-
+function Logout({method}) {
     
-    render() {
+
         return (
             <div>
-                {/* <button type = "submit" onClick = {setLogout}> 
-                    Déconnexion
-                </button> */}
-                <a href='#' className='Deconnexion' onClick={this.state.method}>
+                <a href='#' className='Deconnexion' onClick={method}>
                   <div>
                     <div className='icon'>
 
@@ -30,7 +20,5 @@ class Logout extends React.Component {
             </div>
             
         )
-
-    }
 }
 export default Logout;

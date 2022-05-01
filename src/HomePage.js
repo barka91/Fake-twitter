@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
+import React, { useEffect,useState } from 'react';
+import axios from 'axios';
 import Post from './Post';
 import TweetBox from './TweetBox';
 
+function HomePage() {
+    const [list_post, setListPost] = useState([]);
+    const api=axios.create({
+        withCredentials: 'true',
+        baseURL: 'http://localhost:4000'
+    });
 
-class HomePage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    useEffect(() => {
+        api.get("/api/post/all"
+        ).then(response => {
+            setListPost(response.data) 
+        }) 
+    },[]);
 
-    render() {
-        return(
+    return(
             <div className='homepage'>
-                <div className='tweet-input'>
-                    <TweetBox />
-                </div>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <TweetBox /> 
+                {(list_post.reverse()).map(item => ( 
+                    <Post postid={item._id}/>
+                ))}       
+                
             </div>
         );
-        
 
-    }
 }
 export default HomePage;

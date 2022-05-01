@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import Signin from './Signin';
+import Signup from './Signup';
 import Logout from "./Logout"
 import Login from "./Login"
 import Main from './Main'
@@ -10,6 +10,7 @@ import "./styles/MainPage2.css"
 function MainPage() {
         const [page, setPage] = useState('inscription');
         const [isConnected, setConnected] = useState(false);
+        const [userid,setUserid] = useState('');
         const api=axios.create({
             withCredentials: 'true',
             baseURL: 'http://localhost:4000'
@@ -27,13 +28,27 @@ function MainPage() {
         ).then(response => {
             setPage("mur de tweets");
             setConnected(true);
+        }
+            
+        ).catch(error => {
+            console.log(error.response)
+        });  
+        
+        
+            
+    }
+
+    function name() {
+        api.get("/api/user/"
+        ).then(response => {
+            setPage("mur de tweets");
+            setConnected(true);
             console.log(response);
         }
             
         ).catch(error => {
             console.log(error.response)
-        });     
-            
+        });
     }
 
     function sign(){
@@ -41,7 +56,7 @@ function MainPage() {
         var login = document.getElementById("login").value;
         var pass = document.getElementById("pass").value;
         var re_pass = document.getElementById("re_pass").value;
-        api.post("/api/user/signin",
+        api.post("/api/user/signup",
             {
                 name:name,
                 login:login,
@@ -55,17 +70,26 @@ function MainPage() {
             
         ).catch(error => {
             console.log(error.response)
-        });     
+        });
+        
+        
             
     }
 
     function setLogout() {
+        api.get("/api/logout")
+        .then(response => {
+            setConnected(false);
+            setPage('connexion');
+        }); 
+    }
+    
+    function setLogin(){
         setConnected(false);
         setPage('connexion')
     }
-    
 
-    function setSignin() {
+    function setSignup() {
         setPage('inscription') 
     }
 
@@ -79,10 +103,10 @@ function MainPage() {
 
     let content;
     if(page === 'inscription') {
-        content = <Signin method={sign} toLogin={setLogout}/>
+        content = <Signup method={sign} toLogin={setLogin}/>
     }
     else {
-        content = <Login method={getConnected} toSignup={setSignin}/>
+        content = <Login method={getConnected} toSignup={setSignup}/>
     }
     
     if (!isConnected) {
@@ -91,7 +115,7 @@ function MainPage() {
                 <div className='mainpage'>
                     {/* <div className='control'>
                         <div>
-                            <input type="radio" id="inscription" name="drone" value="inscription"  onClick = {setSignin} />
+                            <input type="radio" id="inscription" name="drone" value="inscription"  onClick = {setSignup} />
                             <label for="inscription">Inscription</label>
                         </div>
                         <div>
@@ -120,7 +144,7 @@ function MainPage() {
     
 export default MainPage;
 
-{/* <button type = "radio" onClick = {setSignin}> 
+{/* <button type = "radio" onClick = {setSignup}> 
                                 inscription 
                             </button>
                             <button type = "radio" onClick = {setLogout}> 
