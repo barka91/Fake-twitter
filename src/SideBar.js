@@ -4,6 +4,9 @@ import Logout from './Logout';
 import './styles/SideBar.css'
 import iconHome from "./media/icon_home.png"
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faHome, faMessage, faUserGroup } from '@fortawesome/free-solid-svg-icons';
+
 
 function SideBar( {pprofil ,  paccueil , pmessage , logout} ) {
   const [name, setName] = useState();
@@ -39,40 +42,24 @@ function SideBar( {pprofil ,  paccueil , pmessage , logout} ) {
                 </div>
             </div>
             <a href='#' className='home' onClick={paccueil}>
-                <div>
-                  <div className='icon'>
-
-                  </div>
+                <div className='section'>
+                  <i><FontAwesomeIcon icon={faHome}/></i>
                   <div className='text'>
                     <h2>Accueil</h2>
                   </div>
                 </div>
               </a>
-              <a href='#' className='explore'>
-                <div>
-                  <div className='icon'>
-
-                  </div>
-                  <div className='text'>
-                    <h2>Explore</h2>
-                  </div>
-                </div>
-              </a>
               <a href='#' className='friends'>
-                <div>
-                  <div className='icon'>
-
-                  </div>
+                <div className='section'>
+                <i><FontAwesomeIcon icon={faUserGroup}/></i>
                   <div className='text'>
                     <h2>Amis</h2>
                   </div>
                 </div>
               </a>
               <a href='#' className='message' onClick={pmessage}>
-                <div>
-                  <div className='icon'>
-
-                  </div>
+                <div className='section'>
+                <i><FontAwesomeIcon icon={faEnvelope}/></i>
                   <div className='text'>
                     <h2>Message</h2>
                   </div>

@@ -5,10 +5,12 @@ import avatar from "./media/1ceac0b83e8307449c91f21113b21762.jpg"
 import banniere from "./media/Vogue_Merry_Anime_Infobox.png"
 import image from "./media/sanji.png"
 import './styles/ProfilBox.css'
+import Editor from './Editor';
 
-function ProfilBox() {
+function ProfilBox({userid}) {
     const [name, setName] = useState();
     const [login,setLogin] = useState();
+    const [shedit,setShedit] = useState(false);
 
     const api=axios.create({
         withCredentials: 'true',
@@ -16,7 +18,8 @@ function ProfilBox() {
     });
 
     useEffect(() => {
-        api.get("/api/user"
+        console.log(userid)
+        api.get("/api/user/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
             const {name,login} = response.data;
             setName(name);
@@ -25,6 +28,13 @@ function ProfilBox() {
         });
     });
 
+    function hideEdit() {
+        if (userid=="") {
+            setShedit(!shedit);
+        }
+        
+    }
+
         return (
             <div className='profilbox'>
                 <div className='banniere'>
@@ -32,6 +42,10 @@ function ProfilBox() {
                 </div>
                 <div className='avatar'>
                     <img src={avatar}></img>
+                </div>
+                <div className='edit'>
+                    <button onClick={() => hideEdit()}>edit</button>
+                    {shedit && <Editor />}
                 </div>
                 <div className='text'>
                     <div className='username'>

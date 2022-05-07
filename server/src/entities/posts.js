@@ -7,11 +7,12 @@ class Posts {
     // suite plus tard avec la BD
   }
 
-  create(userid,content_text) {
+  create(userid,content_text,imgid) {
     return new Promise((resolve, reject) => {
       const post = {
         userid:userid,
         content_text:content_text,
+        imgid:imgid,
       }
 
       this.db.posts.insert(post, function (err,newDoc) {

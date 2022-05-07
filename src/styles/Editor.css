@@ -1,0 +1,9 @@
+.Editor {
+    width: 50vw;
+    height: 75vh;
+    position: absolute;
+    top: 20%;
+    left:35%;
+    background-color: rgb(133, 133, 133);
+    z-index:99;
+}

@@ -17,7 +17,6 @@ function MainPage() {
         });
 
     function getConnected(){
-        
         var login = document.getElementById("login").value;
         var pass = document.getElementById("pass").value;
         api.post("/api/user/login",
@@ -26,39 +25,31 @@ function MainPage() {
                 password:pass,
             }
         ).then(response => {
+
             setPage("mur de tweets");
             setConnected(true);
         }
             
         ).catch(error => {
+            alert("error.response.data.message");
             console.log(error.response)
         });  
         
-        
             
     }
 
-    function name() {
-        api.get("/api/user/"
-        ).then(response => {
-            setPage("mur de tweets");
-            setConnected(true);
-            console.log(response);
-        }
-            
-        ).catch(error => {
-            console.log(error.response)
-        });
-    }
+    
 
     function sign(){
-        var name = document.getElementById("name").value;
-        var login = document.getElementById("login").value;
-        var pass = document.getElementById("pass").value;
-        var re_pass = document.getElementById("re_pass").value;
+       
+        var username = document.getElementById("name").value;
+var login = document.getElementById("login").value;
+var pass = document.getElementById("pass").value;
+var re_pass = document.getElementById("re_pass").value;
+        
         api.post("/api/user/signup",
             {
-                name:name,
+                name:username,
                 login:login,
                 password:pass,
                 re_password:re_pass,
@@ -69,11 +60,23 @@ function MainPage() {
         }
             
         ).catch(error => {
+            alert(error.response.data.message);
             console.log(error.response)
         });
-        
-        
-            
+
+    }
+
+    function setErrorFor(input, message) {
+        const formControl = input.parentElement;
+        console.log(input);
+        const small = formControl.querySelector('small');
+        formControl.className = 'form-control error';
+        small.innerText = message;
+    }
+    
+    function setSuccessFor(input) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-control success';
     }
 
     function setLogout() {
@@ -91,14 +94,6 @@ function MainPage() {
 
     function setSignup() {
         setPage('inscription') 
-    }
-
-    function setHome(){
-        setPage('mur de tweets')
-    }
-
-    function setProfil(){
-        setPage('profil')
     }
 
     let content;
@@ -132,7 +127,7 @@ function MainPage() {
     else {
         return(
             <div>
-                <Main page={page} logout={setLogout}/>
+                <Main pageactu={page} logout={setLogout}/>
             </div>
         )
         
@@ -150,3 +145,20 @@ export default MainPage;
                             <button type = "radio" onClick = {setLogout}> 
                                 connexion 
                             </button> */}
+
+                            // api.post("/api/user/signup",
+        //     {
+        //         name:name,
+        //         login:login,
+        //         password:pass,
+        //         re_password:re_pass,
+        //     }
+        // ).then(response => {
+        //     setPage("connexion");
+        //     console.log(response);
+        // }
+            
+        // ).catch(error => {
+        //     alert(error.response.data.message);
+        //     console.log(error.response)
+        // });

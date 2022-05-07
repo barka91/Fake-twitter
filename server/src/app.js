@@ -1,6 +1,7 @@
 const path = require('path');
 const api = require('./api.js');
-const cors = require('cors')
+const cors = require('cors');
+const fileUpload = require('express-fileupload')
 
 // Détermine le répertoire de base
 const basedir = path.normalize(path.dirname(__dirname));
@@ -11,26 +12,25 @@ const app = express()
 api_1 = require("./api.js");
 const session = require("express-session");
 
-var Datastore = require('nedb')
+var Datastore = require('nedb');
+const sqlite3 = require('sqlite3');
 db = {};
-db.users = new Datastore('../users.db');
+db.users = new Datastore('../data/users.db');
 db.users.loadDatabase();
-db.posts = new Datastore('../posts.db');
+db.posts = new Datastore('../data/posts.db');
 db.posts.loadDatabase();
-// var doc = { login:'pikachu',
-//             password:'1234',
-//             lastname:'chu',
-//             firstname:'pika',
-//            };
 
-// db.users.insert(doc,function (err, newDoc) {  
-//     if(err){
-//         console.log("il y a erreur")
-//     }
-//     else {
-//         console.log("ouee oue oueeeeeee")
-//     }
-//   });
+app.use(fileUpload());
+
+// DB
+const knex = require('knex')({
+    client: 'sqlite3',
+    connection: {
+        filename: "../data/img.db"
+    },
+    useNullAsDefault: true
+});
+
 
 app.use(cors({
     credentials: true,

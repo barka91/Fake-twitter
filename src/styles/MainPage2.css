@@ -1,5 +1,7 @@
-.mainpage {    
-    background: #999a9e;
+.mainpage {
+    height: 100%; 
+    width: 100%;
+    
+    background: #102579;
     padding: 200px 0; 
-    overflow: hidden;
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Post from './Post';
 import TweetBox from './TweetBox';
 
-function HomePage() {
+function HomePage({setProfilFriend}) {
     const [list_post, setListPost] = useState([]);
     const api=axios.create({
         withCredentials: 'true',
@@ -17,11 +17,13 @@ function HomePage() {
         }) 
     },[]);
 
+
+
     return(
             <div className='homepage'>
                 <TweetBox /> 
-                {(list_post.reverse()).map(item => ( 
-                    <Post postid={item._id}/>
+                {(list_post).map(item => ( 
+                    <Post postid={item._id} setProfilFriend={setProfilFriend}/>
                 ))}       
                 
             </div>

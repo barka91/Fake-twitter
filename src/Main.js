@@ -1,69 +1,62 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SideBar from "./SideBar.js";
 import ProfilPage from "./ProfilPage.js";
-import "./styles/Main.css"
+import "./styles/Main.css";
 import HomePage from './HomePage.js';
-import Chat from './chat.js'
+import Chat from './chat.js';
 import axios from 'axios'
 
-class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            page : props.page,
-            logout : props.logout, 
-        };
-        this.setHome = this.setHome.bind(this);
-        this.setProfil = this.setProfil.bind(this);
-        this.setChat = this.setChat.bind(this);
+function Main({pageactu,logout}) {
+        const [page,setPage] = useState(pageactu);
+        const [useridfr,setUseridFr] = useState("")
         const api=axios.create({
             withCredentials: 'true',
             baseURL: 'http://localhost:4000'
         });
-    }
 
-    setHome(){
-        this.setState((state) => {
-            state.page = "mur de tweets";
-            return state;
-        }); 
-    }
-
-    setProfil(){
-        this.setState((state) => {
-            state.page = "page de profil";
-            return state;
-        }); 
-    }
-
-    setChat(){
-        this.setState((state) => {
-            state.page = "message";
-            return state;
-        }); 
-    }
-
-    render() {
-        let content;
-        if (this.state.page === "page de profil") {
-            content = <ProfilPage/>;
-         
-        } else if (this.state.page === "message") {
-            content = <Chat/> ;
-        } else {
-            content = <HomePage/> ;
-        }
-        return (
-            <div className='main'>
-                <SideBar pprofil={this.setProfil} paccueil={this.setHome} pmessage={this.setChat} logout={this.state.logout}/>
-                <div className='content'>
-                    {content}
-                </div>
-            </div>
-            
+        
     
-        );
+        
+    function setHome(){
+        setPage("mur de tweets");
+        setUseridFr("")
     }
+
+    function setProfil(){
+        setPage("page de profil");
+    }
+    
+    function setProfilFriend(userid){
+        console.log(userid+" :koko");
+        setUseridFr(userid);
+        setPage("page de profil ami");
+    }
+
+    function setChat(){
+        setPage("message");
+    }
+
+    let content;
+    if (page === "page de profil") {
+        
+        content = <ProfilPage userid={""}/>;   
+    }else if (page === "page de profil ami") {
+        content = <ProfilPage userid={useridfr}/> ;
+    } else if (page === "message") {
+        content = <Chat/> ;
+    } else {
+        content = <HomePage setProfilFriend={setProfilFriend}  /> ;
+    }
+    return (
+        <div className='main'>
+            <SideBar pprofil={setProfil} paccueil={setHome} pmessage={setChat} logout={logout}/>
+            <div className='content'>
+                {content}
+            </div>
+        </div>    
+
+    );
+
 }
 
 export default Main;

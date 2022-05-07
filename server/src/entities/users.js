@@ -37,11 +37,11 @@ class Users {
 
       this.db.users.findOne({_id: userid}, function (err,doc) {
         if(doc) {
-          console.log("brEXISTlair");
+          
             resolve(doc);
 
         } else {
-          console.log("brEXISTDFDDFF");
+          
             reject();
         }   
       })
@@ -50,17 +50,27 @@ class Users {
 
   
   async exists(login) {
+    console.log("---4-bis-3");
+
     return new Promise((resolve, reject) => {
+      console.log("---4-bis-4");
+
       this.db.users.findOne({login: login}, function (err,doc){
+        console.log("---4-bis-5");
+
         if (doc){
+          
           resolve(doc._id);
-          console.log("brEXIST");
+          
         }
         else{
+          
           resolve();
-          console.log("brEXISTOAS");
+          
         }
         })
+        console.log("---4-bis-6");
+
     });
   }
 
@@ -73,6 +83,22 @@ class Users {
         else {
           resolve()
         }
+      })
+    });
+  }
+
+  editionprofil(name,login,description,lieu,anniversaire,userid){
+    const user = {
+      name:name,
+      login:login,
+      description:description,
+      lieu:lieu,
+      anniversaire:anniversaire,
+    }
+    return new Promise((resolve, reject) => {
+      this.db.users.update({_id: userid},{$set:user},function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
       })
     });
   }
