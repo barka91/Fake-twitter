@@ -20,7 +20,6 @@ function ProfilBox({userid, setProfilFriend}) {
     const [abonnements,setAbonnements] = useState([]); 
     const [userabo,setUserabo] = useState([]); 
 
-    const [isFollow,setIsfollow] = useState();
     // sh: show; edit: editor; pp: photo de profil; ban: banniere
     const [shedit,setShedit] = useState(false); 
     const [sheditpp,setSheditpp] = useState(false);
@@ -36,7 +35,6 @@ function ProfilBox({userid, setProfilFriend}) {
     });
 
     useEffect(() => {
-        console.log("-------------------------"+userid)
         api.get("/api/user/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
             console.log(response.data.user)
@@ -63,7 +61,6 @@ function ProfilBox({userid, setProfilFriend}) {
         
         api.get("/api/user/abonnement/"
         ).then(response => {
-            console.log(response.data.abonnements)
             setUserabo(response.data.abonnements)
             
 
@@ -71,10 +68,6 @@ function ProfilBox({userid, setProfilFriend}) {
             console.log(err)
         });
 
-        console.log("********************"+userabo)
-            console.log(userid)
-            if (userabo.includes(userid)) setIsfollow(true)
-            else setIsfollow(false)
             
 
     },[userid]);
@@ -90,22 +83,15 @@ function ProfilBox({userid, setProfilFriend}) {
     }
 
     function hideEditpp() {
-        if (userid=="") {
-            setSheditpp(!sheditpp);
-        }
-        
+        setSheditpp(!sheditpp);
+
     }
     function hideEditban() {
-        if (userid=="") {
-            setSheditban(!sheditban);
-        }
+        setSheditban(!sheditban);
         
     }
     function hideEditabo() {
-
-            setSheditabo(!sheditabo);
-
-        
+        setSheditabo(!sheditabo);
     }
 
     function showDate(date) {
@@ -116,9 +102,8 @@ function ProfilBox({userid, setProfilFriend}) {
     function follow() {
         api.get("/api/user/follow/"+userid
         ).then(response => {
-            console.log(response.data.user);
+            alert("Abonnement reussi!")
         }).catch(error => {
-            alert(error.response.data.message);
             console.log(error.response)
         });
 
@@ -127,21 +112,17 @@ function ProfilBox({userid, setProfilFriend}) {
     function unfollow() {
         api.get("/api/user/unfollow/"+userid
         ).then(response => {
-            console.log(response.data.user);
+            alert("Desabonnement reussi!")
         }).catch(error => {
             alert(error.response.data.message);
             console.log(error.response)
         });
     }
 
-    
-    console.log(userabo.includes(userid))
-    console.log(isFollow)
     const s="data:image/png;base64,"+image;
     const sb="data:image/png;base64,"+imageban;
 
     let content;
-    console.log(userid);
     if (userid==""){
         content = <div>
         <div className='edit'>
@@ -178,8 +159,6 @@ function ProfilBox({userid, setProfilFriend}) {
         
     }
     
-console.log(abonnes);
-console.log(abonnements);
         return (
             <div className='profilbox'>
                 <div className='banniere'>

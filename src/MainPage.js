@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import Signup from './Signup';
-import Logout from "./Logout"
 import Login from "./Login"
 import Main from './Main'
 import "./styles/MainPage2.css"
-// import ProfilPage from './ProfilPage';
 
 function MainPage() {
         const [page, setPage] = useState('inscription');
         const [isConnected, setConnected] = useState(false);
-        const [userid,setUserid] = useState('');
         const api=axios.create({
             withCredentials: 'true',
             baseURL: 'http://localhost:4000'
@@ -82,18 +79,7 @@ var re_pass = document.getElementById("re_pass").value;
 
     }
 
-    function setErrorFor(input, message) {
-        const formControl = input.parentElement;
-        console.log(input);
-        const small = formControl.querySelector('small');
-        formControl.className = 'form-control error';
-        small.innerText = message;
-    }
     
-    function setSuccessFor(input) {
-        const formControl = input.parentElement;
-        formControl.className = 'form-control success';
-    }
 
     function setLogout() {
         api.get("/api/logout")
@@ -112,10 +98,6 @@ var re_pass = document.getElementById("re_pass").value;
         setPage('inscription') 
     }
 
-    const date = new Date;
-    console.log(date.toISOString().slice(0, 10));
-    
-
     let content;
     if(page === 'inscription') {
         content = <Signup method={sign} toLogin={setLogin}/>
@@ -128,16 +110,6 @@ var re_pass = document.getElementById("re_pass").value;
         return (
             <div>
                 <div className='mainpage'>
-                    {/* <div className='control'>
-                        <div>
-                            <input type="radio" id="inscription" name="drone" value="inscription"  onClick = {setSignup} />
-                            <label for="inscription">Inscription</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="connexion" name="drone" value="connexion" onClick = {setLogout}/>
-                            <label for="connexion">connexion</label>
-                        </div>
-                    </div> */}
                     {content}
                 </div>
         
@@ -158,27 +130,3 @@ var re_pass = document.getElementById("re_pass").value;
 
     
 export default MainPage;
-
-{/* <button type = "radio" onClick = {setSignup}> 
-                                inscription 
-                            </button>
-                            <button type = "radio" onClick = {setLogout}> 
-                                connexion 
-                            </button> */}
-
-                            // api.post("/api/user/signup",
-        //     {
-        //         name:name,
-        //         login:login,
-        //         password:pass,
-        //         re_password:re_pass,
-        //     }
-        // ).then(response => {
-        //     setPage("connexion");
-        //     console.log(response);
-        // }
-            
-        // ).catch(error => {
-        //     alert(error.response.data.message);
-        //     console.log(error.response)
-        // });

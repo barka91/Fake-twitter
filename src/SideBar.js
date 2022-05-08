@@ -1,13 +1,10 @@
 import React, { useEffect,useState } from 'react';
 import btoa from 'btoa';
-import avatar from "./media/1ceac0b83e8307449c91f21113b21762.jpg"
 import Logout from './Logout';
 import './styles/SideBar.css'
-import iconHome from "./media/icon_home.png"
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faHome, faMessage, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-
+import { faEnvelope, faHome, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 function SideBar( {pprofil ,  paccueil , pmessage , logout} ) {
   const [name, setName] = useState();
@@ -53,14 +50,6 @@ function SideBar( {pprofil ,  paccueil , pmessage , logout} ) {
                   <i><FontAwesomeIcon icon={faHome}/></i>
                   <div className='text'>
                     <h2>Accueil</h2>
-                  </div>
-                </div>
-              </a>
-              <a href='#' className='friends'>
-                <div className='section'>
-                <i><FontAwesomeIcon icon={faUserGroup}/></i>
-                  <div className='text'>
-                    <h2>Amis</h2>
                   </div>
                 </div>
               </a>

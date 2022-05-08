@@ -4,15 +4,10 @@ import ProfilPage from "./ProfilPage.js";
 import "./styles/Main.css";
 import HomePage from './HomePage.js';
 import Chat from './chat.js';
-import axios from 'axios'
 
 function Main({pageactu,logout}) {
         const [page,setPage] = useState(pageactu);
         const [useridfr,setUseridFr] = useState("")
-        const api=axios.create({
-            withCredentials: 'true',
-            baseURL: 'http://localhost:4000'
-        });
         
     function setHome(){
         setPage("mur de tweets");
@@ -24,7 +19,6 @@ function Main({pageactu,logout}) {
     }
     
     function setProfilFriend(userid){
-        console.log(userid+" :koko");
         setUseridFr(userid);
         setPage("page de profil ami");
     }

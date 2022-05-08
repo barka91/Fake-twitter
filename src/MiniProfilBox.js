@@ -12,26 +12,16 @@ import EditorBan from './EditorBan';
 function MiniProfilBox({userid, setProfilFriend}) {
     const [name, setName] = useState();
     const [login,setLogin] = useState();
-    const [desc,setDesc] = useState();
-    const [lieu,setLieu] = useState();
-    const [anniv,setAnniv] = useState();    
-    const [shedit,setShedit] = useState(false);
-    const [sheditpp,setSheditpp] = useState(false);
-    const [sheditban,setSheditban] = useState(false);
-    const [image,setImage] = useState("")
-    const [imageban,setImageban] = useState("")
-    
-
+    const [image,setImage] = useState("");
+ 
     const api=axios.create({
         withCredentials: 'true',
         baseURL: 'http://localhost:4000'
     });
 
     useEffect(() => {
-        console.log(userid)
         api.get("/api/user/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
-            console.log(response.data.user)
             const {name,login} = response.data.user;
 
             setName(name);
@@ -55,7 +45,6 @@ function MiniProfilBox({userid, setProfilFriend}) {
 
     const s="data:image/png;base64,"+image;
 
-    // console.log(s);
         return (
             <div className="miniprofilpage">
                     <div className="avatar" onClick={goprofil}>

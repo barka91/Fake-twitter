@@ -12,8 +12,6 @@ function ProfilPage({setProfilFriend,userid}) {
     });
 
     useEffect(() => {
-
-        console.log(userid+" profile page");
         api.get("/api/post/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
 

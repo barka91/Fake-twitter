@@ -40,10 +40,8 @@ function TweetBox(params) {
               'Content-Type': 'multipart/form-data'
             }
         }).then(response => {
-            console.log(response.data.id);
             setImgid(response.data.id);
             var contenttext = document.getElementById("contenttext").value;
-            console.log(imgid+" imgid");
             api.post("/api/post",
                 {
                     contenttext:contenttext,

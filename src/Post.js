@@ -25,18 +25,14 @@ function Post({postid, setProfilFriend}) {
 
         api.get("/api/post/p/"+(postid+""=="undefined"?"":postid)
         ).then(response => {
-            console.log(response)
             const {userid,content_text} = response.data.post;
             const {data} =response.data.image.img;
-            // console.log(data.toString());
             setUserid(userid);
             setContenttext(content_text);
-            // console.log(base64encode(data.toString()));
             
             setImage( btoa(new Uint8Array(data).reduce(function (data, byte) {
                 return data + String.fromCharCode(byte);
             }, '')));
-            // btoa(String.fromCharCode(...new Uint8Array(img)))
             
             
         });
@@ -54,7 +50,6 @@ function Post({postid, setProfilFriend}) {
         });
 
     });
-    console.log("post: "+userid);
 
     function goprofil() {
         try {
@@ -65,11 +60,9 @@ function Post({postid, setProfilFriend}) {
         
     };
 
-    // console.log(image);
     const s="data:image/png;base64,"+image;
     const sp="data:image/png;base64,"+imagepp;
 
-    // console.log(s);
         return (
             <div className="post elem">
                     <div className="avatar" onClick={goprofil}>

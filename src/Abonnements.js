@@ -1,13 +1,9 @@
-import React, { useEffect,useState } from 'react';
-import axios from 'axios';
-import Post from "./Post"
-import ProfilBox from './ProfilBox'
+import React from 'react';
 import './styles/Abonnements.css'
 import MiniProfilBox from './MiniProfilBox';
 
 function Abonnements({list_abonnes,list_abonnements,setProfilFriend}) {
- console.log(list_abonnes);
- console.log(list_abonnements);
+
     return (
         <div className='abonnement'>
             <h2>Abonnes</h2>
