@@ -13,9 +13,6 @@ function Main({pageactu,logout}) {
             withCredentials: 'true',
             baseURL: 'http://localhost:4000'
         });
-
-        
-    
         
     function setHome(){
         setPage("mur de tweets");
@@ -38,10 +35,9 @@ function Main({pageactu,logout}) {
 
     let content;
     if (page === "page de profil") {
-        
-        content = <ProfilPage userid={""}/>;   
+        content = <ProfilPage setProfilFriend={setProfilFriend} userid={""}/>;   
     }else if (page === "page de profil ami") {
-        content = <ProfilPage userid={useridfr}/> ;
+        content = <ProfilPage setProfilFriend={setProfilFriend} userid={useridfr}/> ;
     } else if (page === "message") {
         content = <Chat/> ;
     } else {

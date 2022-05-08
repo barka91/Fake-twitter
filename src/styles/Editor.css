@@ -1,9 +1,16 @@
 .Editor {
-    width: 50vw;
-    height: 75vh;
+    width: 400px;
+    /* height: 75vh; */
     position: absolute;
     top: 20%;
     left:35%;
     background-color: rgb(133, 133, 133);
     z-index:99;
 }
+
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    padding-right: 35px;
+    padding-left: 35px; 
+} 

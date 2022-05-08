@@ -10,8 +10,6 @@ function init(db) {
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
     router.use((req, res, next) => {
-        console.log('API: method %s, path %s', req.method, req.path);
-        console.log('Body', req.body);
         
         next();
     });
@@ -28,15 +26,13 @@ function init(db) {
         },
         useNullAsDefault: true
     });
-        
+    
+
 
     // *** LOGIN ***
     router.post("/user/login", async (req, res) => {
-        console.log("---1");
         try {
-            console.log("---2");
             const { login, password } = req.body;
-            console.log("---3");
             // Erreur sur la requête HTTP
             if (!login || !password) {
                 res.status(400).json({
@@ -45,25 +41,18 @@ function init(db) {
                 });
                 return;
             }
-            console.log("---4");
             if(! await users.exists(login)) {
-                console.log("---4-bis");
                 res.status(401).json({
                     status: 401,
                     message: "Utilisateur inconnu"
                 });
-                console.log("---4-bis-2");
                 return;
             }
-            console.log("---5");
             let userid = await users.checkpassword(login, password);
             if (userid) {
-                console.log("---6");
                 // Avec middleware express-session
                 req.session.regenerate(function (err) {
-                    console.log("---7");
                     if (err) {
-                        console.log("---8");
                         res.status(500).json({
                             status: 500,
                             message: "Erreur interne",
@@ -72,7 +61,6 @@ function init(db) {
                     }
                     else{
                         // C'est bon, nouvelle session créée
-                        console.log("---9");
                         req.session.userid = userid;
                         res.status(200).json({
                             status: 200,
@@ -80,25 +68,19 @@ function init(db) {
                             "parpitie":req.session.userid
                             
                         });
-                        console.log("---10");
                     } 
-                    console.log("---11");
                 });
-                console.log("---12");
                 return;
             }
-            console.log("---13");
             // Faux login : destruction de la session et erreur
             req.session.destroy((err) => { });
             res.status(403).json({
                 status: 403,
                 message: "login et/ou le mot de passe invalide(s)"
             });
-            console.log("---14");
             return;
         }
         catch (e) {
-            console.log("---15");
             // Toute autre erreur
             res.status(500).json({
                 status: 500,
@@ -155,16 +137,49 @@ function init(db) {
 
     });
 
+    router.post('/user/pp/upload', async (req, res) => {
+        const {name, data} = req.files.file;
+        if (name && data) {
+            const p=await knex.insert({name: name, img: data}).into('pp');
+            const q= await users.addPP(req.session.userid,p[0])
+            res.status(200).json({
+                status: 200,
+                id: p[0],
+            })
+        } else {
+            res.sendStatus(400);
+        }
+    })
+
+    router.post('/user/ban/upload', async (req, res) => {
+        const {name, data} = req.files.file;
+        if (name && data) {
+            const p=await knex.insert({name: name, img: data}).into('ban');
+            const q= await users.addBan(req.session.userid,p[0])
+            res.status(200).json({
+                status: 200,
+                id: p[0],
+            })
+        } else {
+            res.sendStatus(400);
+        }
+    })
+
     router
         // *** GET ***
         .route("/user")
         .get(async (req, res) => {
         try {
             const user = await users.get(req.session.userid);
+            
+            const ppid = user.ppid;
+            const banid = user.banid;
+            const image = await knex('pp').where({id:ppid}).first();      
+            const banniere = await knex('ban').where({id:banid}).first();
             if (!user)
                 res.sendStatus(404);
             else
-                res.send(user);
+                res.send({user,image,banniere});
         }
         catch (e) {
             res.status(500).send(e);
@@ -179,24 +194,78 @@ function init(db) {
         res.sendStatus(200);
     });
 
+    router
+    .route("/user/abonnement/")
+    .get(async (req, res) => {
+    try {
+        
+        const abo = await users.getabo(req.session.userid);
+        if (!abo)
+            res.sendStatus(404);
+        else
+            res.send(abo);
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+    router
+    .route("/user/follow/:userid")
+    .get(async (req, res) => {
+    try {
+        const a = await users.addAbonnement(req.session.userid,req.params.userid);
+        const b = await users.addAbonne(req.params.userid,req.session.userid);
+
     
+        res.sendStatus(200);
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+    });
+
+    router
+    .route("/user/unfollow/:userid")
+    .get(async (req, res) => {
+    try {
+        const a = await users.supAbonnement(req.session.userid,req.params.userid);
+        const b = await users.supAbonne(req.params.userid,req.session.userid);
+
+
+    
+        res.sendStatus(200);
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+    });
+
     router
             .route("/user/:user_id")
             .get(async (req, res) => {
             try {
                 const user = await users.get(req.params.user_id);
-                if (!user)
-                    res.sendStatus(404);
-                else
-                    res.send(user);
+                const ppid = user.ppid;
+                const banid = user.banid;
+                const image = await knex('pp').where({id:ppid}).first();      
+                const banniere = await knex('ban').where({id:banid}).first();
+            if (!user)
+                res.sendStatus(404);
+            else
+                res.send({user,image,banniere});
             }
             catch (e) {
                 res.status(500).send(e);
             }
         })
-            .delete((req, res, next) => res.send(`delete user ${req.params.user_id}`))
+            .delete((req, res, next) => res.send(`delete user ${req.params.user_id}`));
+        
+        
 
+        
 
+        
 // ----------------------------------------------------------------------------
 
 const posts = new Posts.default(db);
@@ -252,7 +321,6 @@ const posts = new Posts.default(db);
                 const post = await posts.get(req.params.post_id);
                 const imgid = post.imgid;
                 const image = await knex('img').where({id: imgid}).first();      
-                console.log(image)          
                 if (!post)
                     res.sendStatus(404);
                 else{}
@@ -280,7 +348,6 @@ const posts = new Posts.default(db);
         });
 
         router.post('/upload', async (req, res) => {
-            console.log(req.files)
             const {name, data} = req.files.file;
             if (name && data) {
                 const p=await knex.insert({name: name, img: data}).into('img');
@@ -299,34 +366,4 @@ const posts = new Posts.default(db);
 }
 exports.default = init;
 
-  // router.get("/user",async (req, res) => {
-    //     try {
-    //         console.log("req.userid: ",req.session.userid)
-    //         const user = await users.get(req.session.userid);
-    //         if (!user)
-    //             res.sendStatus(404);
-    //         else
-    //             res.send(user);
-    //     }
-    //     catch (e) {
-    //         res.status(500).send(e);
-    //     }
-    // })
-
-
-
-      // router
-    //     .route("/user/:user_id(\\d+)")
-    //     .get(async (req, res) => {
-    //     try {
-    //         const user = await users.get(req.params.userid);
-    //         if (!user)
-    //             res.sendStatus(404);
-    //         else
-    //             res.send(user);
-    //     }
-    //     catch (e) {
-    //         res.status(500).send(e);
-    //     }
-    // })
-    //     .delete((req, res, next) => res.send(`delete user ${req.params.user_id}`));
+ 

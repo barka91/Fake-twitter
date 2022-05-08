@@ -8,12 +8,21 @@ class Users {
   }
 
   create(name,login,password) {
+    var planets = ["Mercure", "Vénus", "Terre", "Mars", "Jupiter", "Saturne", "Uranus", "Neptune"]
+    const date = new Date;
     return new Promise((resolve, reject) => {
       // let userid = 1; // À remplacer par une requête bd
       const user = {
         name:name,
         login:login,
         password:password,
+        description:"Hello world, this is me, life should be fun for everyone ",
+        lieu:planets[Math.floor(Math.random() * planets.length)],
+        anniversaire: date.toISOString().slice(0, 10),
+        ppid:1,
+        banid:1,
+        abonnements:[],
+        abonnes:[]
       }
 
       this.db.users.insert(user, function (err,newDoc) {
@@ -35,7 +44,7 @@ class Users {
       //    firstname: "pika"
       // }; // À remplacer par une requête bd
 
-      this.db.users.findOne({_id: userid}, function (err,doc) {
+      this.db.users.findOne({_id: userid},{password:0}, function (err,doc) {
         if(doc) {
           
             resolve(doc);
@@ -48,15 +57,14 @@ class Users {
     });
   }
 
+
+
   
   async exists(login) {
-    console.log("---4-bis-3");
 
     return new Promise((resolve, reject) => {
-      console.log("---4-bis-4");
 
       this.db.users.findOne({login: login}, function (err,doc){
-        console.log("---4-bis-5");
 
         if (doc){
           
@@ -69,7 +77,6 @@ class Users {
           
         }
         })
-        console.log("---4-bis-6");
 
     });
   }
@@ -102,75 +109,80 @@ class Users {
       })
     });
   }
+  addPP(userid,pp){
+    return new Promise((resolve, reject) => {
 
+      this.db.users.update({_id: userid},{$set:{ppid:pp}},function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  addBan(userid,b){
+    return new Promise((resolve, reject) => {
+
+      this.db.users.update({_id: userid},{$set:{banid:b}},function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  addAbonne(userid,a){
+    return new Promise((resolve, reject) => {
+
+      this.db.users.update({_id: userid},{$push:{abonnes:a}},{ upsert: true },function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  addAbonnement(userid,a){
+    return new Promise((resolve, reject) => {
+
+      this.db.users.update({_id: userid},{$push:{abonnements:a}},{ upsert: true },function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  supAbonne(userid,a){
+    return new Promise((resolve, reject) => {
+
+      this.db.users.update({_id: userid},{$pull:{abonnes:a}},function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  supAbonnement(userid,a){
+    return new Promise((resolve, reject) => {
+
+      this.db.users.update({_id: userid},{$pull:{abonnements:a}},function (err,numRemplaced){
+        if(err)reject(false)
+        else resolve(numRemplaced)
+      })
+    });
+  }
+
+  getabo(userid){
+    return new Promise((resolve, reject) => {
+      this.db.users.findOne({_id: userid},{abonnements:1}, function (err,doc) {
+        if(doc) {
+          
+            resolve(doc);
+
+        } else {
+          
+            reject();
+        }   
+      })
+      });
+  }
 }
 
 exports.default = Users;
-
-// class Users {
-//   constructor(db) {
-//     this.db = db
-//     // suite plus tard avec la BD
-//   }
-
-//   create(login, password, lastname, firstname) {
-//     return new Promise((resolve, reject) => {
-//       let userid = 1; // À remplacer par une requête bd
-//       if(false) {
-//         //erreur
-//         reject();
-//       } else {
-//         resolve(userid);
-//       }
-//     });
-//   }
-
-//   get(userid) {
-//     return new Promise((resolve, reject) => {
-//       const user = {
-//          login: "pikachu",
-//          password: "1234",
-//          lastname: "chu",
-//          firstname: "pika"
-//       }; // À remplacer par une requête bd
-
-//       if(false) {
-//         //erreur
-//         reject();
-//       } else {
-//         if(userid == 1) {
-//           resolve(user);
-//         } else {
-//           resolve(null);
-//         }
-//       }
-//     });
-//   }
-
-//   async exists(login) {
-//     return new Promise((resolve, reject) => {
-//       if(false) {
-//         //erreur
-//         reject();
-//       } else {
-//         resolve(true);
-//       }
-//     });
-//   }
-
-//   checkpassword(login, password) {
-//     return new Promise((resolve, reject) => {
-//       let userid = 1; // À remplacer par une requête bd
-//       if(false) {
-//         //erreur
-//         reject();
-//       } else {
-//         resolve(userid);
-//       }
-//     });
-//   }
-
-// }
-
-// exports.default = Users;
-

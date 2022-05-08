@@ -15,6 +15,9 @@ class Login extends React.Component {
     render() {
         return (
             <div class="container">
+                <head>
+                    <script defer src="MainPage.js"></script>
+                </head>
                 <div class="signup-content">
                     <div class="signup-image">
                         <figure><img src={signup_img} alt="sign in image"/></figure>
@@ -22,13 +25,14 @@ class Login extends React.Component {
                     </div>
                     <div class="signup-form">
                         <h2 class="form-title">Connectez-vous</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <form method="GET" class="register-form" id="login-form" action='/'>
                             <div class="form-group">
-                                <input type="text" name="login" id="login" placeholder="Nom d'utilisateur"/>
+                                <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required/>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="pass" id="pass" placeholder="Mot de passe"/>
+                                <input type="password" name="pass" id="pass" placeholder="Mot de passe" required/>
                             </div>
+                            <div id="errorLog"></div>
                             <div class="form-group form-button">
                                 <input type="button" name="signup" id="signup" class="form-submit" value="Suivant" onClick = {this.state.method}/>
                             </div>

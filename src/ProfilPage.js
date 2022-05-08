@@ -3,7 +3,7 @@ import axios from 'axios';
 import Post from "./Post"
 import ProfilBox from './ProfilBox'
 
-function ProfilPage({userid}) {
+function ProfilPage({setProfilFriend,userid}) {
     const [list_post, setListPost] = useState([]);
     const [p,setP] = useState(0)
     const api=axios.create({
@@ -16,15 +16,16 @@ function ProfilPage({userid}) {
         console.log(userid+" profile page");
         api.get("/api/post/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
+
             setListPost(response.data) 
         }) 
         
     },[userid]);
- 
+
     return (
         <div className='profilpage'>
             <div className='profil elem'>
-                <ProfilBox userid={userid}/>
+                <ProfilBox userid={userid} setProfilFriend={setProfilFriend}/>
                 {(list_post).map(item => ( 
                     <Post postid={item._id}/>
                 ))}       

@@ -19,6 +19,18 @@ function MainPage() {
     function getConnected(){
         var login = document.getElementById("login").value;
         var pass = document.getElementById("pass").value;
+
+        const form = document.getElementById("login-form");
+        const error = document.getElementById('errorLog');
+        let messages;
+
+        form.addEventListener('submit',(e)=>{ // pour afficher les messages d'erreurs
+            if(!messages){
+                e.preventDefault();
+                error.innerText = messages;
+            }
+        });
+
         api.post("/api/user/login",
             {
                 login:login,
@@ -30,9 +42,11 @@ function MainPage() {
             setConnected(true);
         }
             
-        ).catch(error => {
-            alert("error.response.data.message");
-            console.log(error.response)
+        ).catch(err => {
+
+            console.log(err.response);
+            messages = err.response.data.message;
+            error.innerText = messages;
         });  
         
             
@@ -53,6 +67,8 @@ var re_pass = document.getElementById("re_pass").value;
                 login:login,
                 password:pass,
                 re_password:re_pass,
+                ppid:1,
+                banid:1
             }
         ).then(response => {
             setPage("connexion");
@@ -95,6 +111,10 @@ var re_pass = document.getElementById("re_pass").value;
     function setSignup() {
         setPage('inscription') 
     }
+
+    const date = new Date;
+    console.log(date.toISOString().slice(0, 10));
+    
 
     let content;
     if(page === 'inscription') {

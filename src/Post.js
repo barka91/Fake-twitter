@@ -9,10 +9,11 @@ import btoa from 'btoa';
 function Post({postid, setProfilFriend}) {
     const [userid, setUserid] = useState();
     const [content_text,setContenttext] = useState();
+    const [imagepp,setImagepp] = useState("")
     const [image,setImage] = useState("")
     const [name, setName] = useState();
     const [login,setLogin] = useState();
-    const [p,setP] = useState("");
+    
 
     const api=axios.create({
         withCredentials: 'true',
@@ -27,7 +28,7 @@ function Post({postid, setProfilFriend}) {
             console.log(response)
             const {userid,content_text} = response.data.post;
             const {data} =response.data.image.img;
-            console.log(data.toString());
+            // console.log(data.toString());
             setUserid(userid);
             setContenttext(content_text);
             // console.log(base64encode(data.toString()));
@@ -40,20 +41,22 @@ function Post({postid, setProfilFriend}) {
             
         });
 
-        console.log(userid);
         api.get("/api/user/"+(userid+""=="undefined"?"":userid)
         ).then(response => {
-            const {name,login} = response.data;
+            const {name,login} = response.data.user;
+            const {data} =response.data.image.img;
             setName(name);
             setLogin(login);
             
+            setImagepp( btoa(new Uint8Array(data).reduce(function (data, byte) {
+                return data + String.fromCharCode(byte);
+            }, '')));
         });
 
-        
-        
-    },[]);
+    });
+    console.log("post: "+userid);
 
-    function han() {
+    function goprofil() {
         try {
             setProfilFriend(userid);
         } catch (error) {
@@ -62,13 +65,15 @@ function Post({postid, setProfilFriend}) {
         
     };
 
-    console.log(image);
+    // console.log(image);
     const s="data:image/png;base64,"+image;
-    console.log(s);
+    const sp="data:image/png;base64,"+imagepp;
+
+    // console.log(s);
         return (
             <div className="post elem">
-                    <div className="avatar" onClick={han}>
-                        <img src={avatar}></img>
+                    <div className="avatar" onClick={goprofil}>
+                        <img src={sp}></img>
                     </div>
                     <div className="post_main">
                        <div className="header">
